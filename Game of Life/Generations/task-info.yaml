@@ -179,5 +179,5 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/projects/54/stages/295/implement
-status: Unchecked
-record: -1
+status: Failed
+record: 2
