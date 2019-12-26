@@ -178,6 +178,24 @@ files:
         }
     }
   learner_created: false
+- name: src/life/State.java
+  visible: true
+  learner_created: true
+- name: src/life/Cell.java
+  visible: true
+  learner_created: true
+- name: src/life/Grid.java
+  visible: true
+  learner_created: true
+- name: test/life/CellsTest.java
+  visible: true
+  learner_created: true
+- name: src/life/RandomCellsGenerator.java
+  visible: true
+  learner_created: true
+- name: src/life/CellsGenerator.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/54/stages/295/implement
-status: Failed
+status: Solved
 record: 2
