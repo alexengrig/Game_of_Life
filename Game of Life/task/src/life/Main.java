@@ -1,5 +1,6 @@
 package life;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,11 +11,26 @@ public class Main {
         CellsGenerator generator = new RandomCellsGenerator(seed);
         Cell[][] cells = generator.generate(n);
         Grid grid = new Grid(cells);
-        int steps = scanner.nextInt();
-        for (int i = 0; i < steps; i++) {
+        for (int i = -1; i < 10; i++) {
+            clear();
+            grid.print();
             grid = grid.next();
         }
-        grid.print();
+    }
+
+    private static void clear() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls")
+                        .inheritIO()
+                        .start()
+                        .waitFor();
+            }else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
