@@ -1,0 +1,9 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: startLongProcess(/* pass your callback here */);
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2550
+status: Solved
+record: -1
