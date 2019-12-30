@@ -1,0 +1,18 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    public static void main(String[] args) throws InterruptedException {
+        final Scanner scanner = new Scanner(System.in);
+
+        final String str = scanner.nextLine();
+
+        final SlowStringProcessor processor = new SlowStringProcessor(str);
+
+        System.out.println(processor.getNumberOfUniqueCharacters());
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2539
+status: Solved
+record: -1
