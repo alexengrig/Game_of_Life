@@ -1,0 +1,24 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    public static void cookVeganPizza() throws InterruptedException {
+            Base base = new Base();
+            Tomatoes tomatoes = new Tomatoes();
+            Onion onion = new Onion();
+            Bake bake = new Bake();
+            java.util.List<Thread> stepOfCook = new java.util.ArrayList<>();
+            stepOfCook.add(base);
+            stepOfCook.add(tomatoes);
+            stepOfCook.add(onion);
+            stepOfCook.add(bake);
+            for (Thread step : stepOfCook) {
+                step.start();
+            }
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/3662
+status: Solved
+record: -1
