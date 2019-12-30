@@ -1,0 +1,12 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    public static void printCurrentThreadInfo() {
+        // get the thread and print its info
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2521
+status: Solved
+record: -1
