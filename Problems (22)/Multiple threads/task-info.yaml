@@ -1,0 +1,16 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    public class Main {
+
+        public static void main(String[] args) {
+
+            // create instances and start threads here
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2519
+status: Solved
+record: -1
