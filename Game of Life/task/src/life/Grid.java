@@ -16,6 +16,18 @@ public class Grid {
         }
     }
 
+    public int getNumberOfAlive() {
+        int count = 0;
+        for (Cell[] row : cells) {
+            for (Cell cell : row) {
+                if (cell.state == State.ALIVE) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     public Grid next() {
         Cell[][] nextCells = new Cell[cells.length][];
         for (int row = 0; row < cells.length; row++) {

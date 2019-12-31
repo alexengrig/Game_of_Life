@@ -11,8 +11,10 @@ public class Main {
         CellsGenerator generator = new RandomCellsGenerator(seed);
         Cell[][] cells = generator.generate(n);
         Grid grid = new Grid(cells);
-        for (int i = -1; i < 10; i++) {
+        for (int generation = 0; generation <= 10; generation++) {
             clear();
+            System.out.println("Generation #" + generation);
+            System.out.println("Alive: " + grid.getNumberOfAlive());
             grid.print();
             grid = grid.next();
         }
@@ -25,7 +27,7 @@ public class Main {
                         .inheritIO()
                         .start()
                         .waitFor();
-            }else {
+            } else {
                 Runtime.getRuntime().exec("clear");
             }
         } catch (InterruptedException | IOException e) {
