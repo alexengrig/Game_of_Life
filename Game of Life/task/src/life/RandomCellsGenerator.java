@@ -5,8 +5,8 @@ import java.util.Random;
 class RandomCellsGenerator implements CellsGenerator {
     private final Random random;
 
-    public RandomCellsGenerator(int seed) {
-        random = new Random(seed);
+    public RandomCellsGenerator() {
+        random = new Random();
     }
 
     @Override

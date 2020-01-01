@@ -7,13 +7,8 @@ public class Grid {
         this.cells = cells;
     }
 
-    public void print() {
-        for (Cell[] row : cells) {
-            for (Cell cell : row) {
-                System.out.print(cell);
-            }
-            System.out.println();
-        }
+    public Cell[][] getCells() {
+        return cells;
     }
 
     public int getNumberOfAlive() {
