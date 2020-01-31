@@ -1,5 +1,5 @@
 package life;
 
 interface CellsGenerator {
-    Cell[][] generate(int size);
+    Cells generate(int size);
 }

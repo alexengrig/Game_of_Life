@@ -5,12 +5,12 @@ import java.util.Random;
 class RandomCellsGenerator implements CellsGenerator {
     private final Random random;
 
-    public RandomCellsGenerator() {
-        random = new Random();
+    public RandomCellsGenerator(int seed) {
+        random = new Random(seed);
     }
 
     @Override
-    public Cell[][] generate(int size) {
+    public Cells generate(int size) {
         Cell[][] cells = new Cell[size][size];
         for (int row = 0; row < cells.length; row++) {
             for (int col = 0; col < cells[row].length; col++) {
@@ -18,6 +18,6 @@ class RandomCellsGenerator implements CellsGenerator {
                 cells[row][col] = new Cell(row, col, state);
             }
         }
-        return cells;
+        return new Cells(cells);
     }
 }

@@ -1,34 +1,22 @@
 package life;
 
-public class Grid {
-    private final Cell[][] cells;
+import org.jetbrains.annotations.NotNull;
 
-    public Grid(Cell[][] cells) {
+import java.util.Iterator;
+
+public class Grid implements Iterable<Cell[]> {
+    private final Cells cells;
+
+    public Grid(Cells cells) {
         this.cells = cells;
     }
 
-    public Cell[][] getCells() {
-        return cells;
-    }
-
-    public int getNumberOfAlive() {
-        int count = 0;
-        for (Cell[] row : cells) {
-            for (Cell cell : row) {
-                if (cell.state == State.ALIVE) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-
     public Grid next() {
-        Cell[][] nextCells = new Cell[cells.length][];
-        for (int row = 0; row < cells.length; row++) {
-            nextCells[row] = new Cell[cells[row].length];
-            for (int col = 0; col < cells[row].length; col++) {
-                Cell cell = cells[row][col];
+        Cell[][] nextCells = new Cell[cells.length()][];
+        for (int row = 0; row < cells.length(); row++) {
+            nextCells[row] = new Cell[cells.length(row)];
+            for (int col = 0; col < cells.length(row); col++) {
+                Cell cell = cells.get(row, col);
                 State newState;
                 State state = cell.state;
                 if (state == State.ALIVE && isSurvivor(cell) || state == State.DEAD && isReborn(cell)) {
@@ -40,7 +28,7 @@ public class Grid {
                 nextCells[row][col] = nextCell;
             }
         }
-        return new Grid(nextCells);
+        return new Grid(new Cells(nextCells));
     }
 
     private boolean isReborn(Cell cell) {
@@ -56,29 +44,29 @@ public class Grid {
     private int countAlive(Cell cell) {
         int count = 0;
         int row = cell.row;
-        int rowLength = cells.length;
+        int rowLength = cells.length();
         int upRow = back(row, rowLength);
         int downRow = forth(row, rowLength);
         int col = cell.col;
-        int colLength = cells[row].length;
+        int colLength = cells.length(row);
         int leftCol = back(col, colLength);
         int rightCol = forth(col, colLength);
         State state = State.ALIVE;
-        Cell northwest = cells[upRow][leftCol];
+        Cell northwest = cells.get(upRow, leftCol);
         if (northwest.state == state) count++;
-        Cell north = cells[upRow][col];
+        Cell north = cells.get(upRow, col);
         if (north.state == state) count++;
-        Cell northeast = cells[upRow][rightCol];
+        Cell northeast = cells.get(upRow, rightCol);
         if (northeast.state == state) count++;
-        Cell west = cells[row][leftCol];
+        Cell west = cells.get(row, leftCol);
         if (west.state == state) count++;
-        Cell east = cells[row][rightCol];
+        Cell east = cells.get(row, rightCol);
         if (east.state == state) count++;
-        Cell southwest = cells[downRow][leftCol];
+        Cell southwest = cells.get(downRow, leftCol);
         if (southwest.state == state) count++;
-        Cell south = cells[downRow][col];
+        Cell south = cells.get(downRow, col);
         if (south.state == state) count++;
-        Cell southeast = cells[downRow][rightCol];
+        Cell southeast = cells.get(downRow, rightCol);
         if (southeast.state == state) count++;
         return count;
     }
@@ -99,5 +87,11 @@ public class Grid {
         } else {
             return 0;
         }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<Cell[]> iterator() {
+        return cells.iterator();
     }
 }
