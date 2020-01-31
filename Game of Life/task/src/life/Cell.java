@@ -13,6 +13,10 @@ public class Cell {
 
     @Override
     public String toString() {
-        return state == State.ALIVE ? "O" : " ";
+        return "Cell{" +
+                "row=" + row +
+                ", col=" + col +
+                ", state=" + state +
+                '}';
     }
 }
