@@ -182,6 +182,12 @@ files:
 - name: src/life/Cells.java
   visible: true
   learner_created: true
+- name: src/life/GameOfLife.java
+  visible: true
+  learner_created: true
+- name: src/life/Field.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/54/stages/298/implement
-status: Unchecked
+status: Solved
 record: -1
