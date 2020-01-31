@@ -6,39 +6,29 @@ import java.util.Iterator;
 
 public class Grid implements Iterable<Cell[]> {
     private final Cells cells;
+    private final int aliveCount;
 
     public Grid(Cells cells) {
         this.cells = cells;
+        this.aliveCount = countAlive(cells);
     }
 
-    public Grid next() {
-        Cell[][] nextCells = new Cell[cells.length()][];
-        for (int row = 0; row < cells.length(); row++) {
-            nextCells[row] = new Cell[cells.length(row)];
-            for (int col = 0; col < cells.length(row); col++) {
-                Cell cell = cells.get(row, col);
-                State newState;
-                State state = cell.state;
-                if (state == State.ALIVE && isSurvivor(cell) || state == State.DEAD && isReborn(cell)) {
-                    newState = State.ALIVE;
-                } else {
-                    newState = State.DEAD;
-                }
-                Cell nextCell = new Cell(row, col, newState);
-                nextCells[row][col] = nextCell;
+    public int size() {
+        return cells.length();
+    }
+
+    public int getAliveCount() {
+        return aliveCount;
+    }
+
+    private int countAlive(Cells cells) {
+        int count = 0;
+        for (Cell[] row : cells) {
+            for (Cell cell : row) {
+                count += countAlive(cell);
             }
         }
-        return new Grid(new Cells(nextCells));
-    }
-
-    private boolean isReborn(Cell cell) {
-        int count = countAlive(cell);
-        return count == 3;
-    }
-
-    private boolean isSurvivor(Cell cell) {
-        int count = countAlive(cell);
-        return count == 2 || count == 3;
+        return count;
     }
 
     private int countAlive(Cell cell) {
@@ -87,6 +77,36 @@ public class Grid implements Iterable<Cell[]> {
         } else {
             return 0;
         }
+    }
+
+    public Grid next() {
+        Cell[][] nextCells = new Cell[cells.length()][];
+        for (int row = 0; row < cells.length(); row++) {
+            nextCells[row] = new Cell[cells.length(row)];
+            for (int col = 0; col < cells.length(row); col++) {
+                Cell cell = cells.get(row, col);
+                State newState;
+                State state = cell.state;
+                if (state == State.ALIVE && isSurvivor(cell) || state == State.DEAD && isReborn(cell)) {
+                    newState = State.ALIVE;
+                } else {
+                    newState = State.DEAD;
+                }
+                Cell nextCell = new Cell(row, col, newState);
+                nextCells[row][col] = nextCell;
+            }
+        }
+        return new Grid(new Cells(nextCells));
+    }
+
+    private boolean isReborn(Cell cell) {
+        int count = countAlive(cell);
+        return count == 3;
+    }
+
+    private boolean isSurvivor(Cell cell) {
+        int count = countAlive(cell);
+        return count == 2 || count == 3;
     }
 
     @NotNull
