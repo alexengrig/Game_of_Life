@@ -1,27 +1,20 @@
 package life;
 
-import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int seed = scanner.nextInt();
+    public static void main(String[] args) throws InterruptedException {
+        int n = 20;
+        int seed = 8;
+        int steps = 20;
         CellsGenerator generator = new RandomCellsGenerator(seed);
         Cells cells = generator.generate(n);
         Grid grid = new Grid(cells);
-        for (int i = -1; i < 10; i++) {
-            print(grid);
+        GameOfLife gameOfLife = new GameOfLife();
+        for (int i = -1; i < steps; i++) {
+            gameOfLife.nextGrid(grid);
             grid = grid.next();
-        }
-    }
-
-    public static void print(Grid grid) {
-        for (Cell[] row : grid) {
-            for (Cell cell : row) {
-                System.out.print(State.DEAD == cell.state ? "_" : "O");
-            }
-            System.out.println();
+            TimeUnit.SECONDS.sleep(1);
         }
     }
 }
